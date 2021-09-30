@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="layui/layui.js"></script>
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <script src="js/jQuery3.6.0.js"></script>
+    <script>
+        function findAll() {
+            var myTable = $("#myTable").html("")
+            $.ajax({
+                type:"POST",
+                url:"HR",
+                data:"",
+                success:function (msg) {
+                    var array = $.parseJSON(msg);
+                    myTable.append("<tr>" +
+                        "<td>id</td>" +
+                        "<td>员工编号</td>" +
+                        "<td>姓名</td>" +
+                        "<td>性别</td>" +
+                        "<td>邮箱</td>" +
+                        "<td>手机号</td>" +
+                        "<td>QQ号</td>" +
+                        "<td>地址</td>" +
+                        "<td>邮编</td>" +
+                        "<td>国籍</td>" +
+                        "<td>户籍地</td>" +
+                        "<td>出生日期</td>" +
+                        "<td>身份证号</td>" +
+                        "<td>民族</td>" +
+                        "<td>操作</td>" +
+                        "</tr>")
+                    for (var i = 0;i<array.length;i++){
+                        myTable.append("<tr>" +
+                            "<td>" +array[i].id+ "</td>" +
+                            "<td>" +array[i].eid+ "</td>" +
+                            "<td>" +array[i].name+ "</td>" +
+                            "<td>" +array[i].sex+ "</td>" +
+                            "<td>" +array[i].mail+ "</td>" +
+                            "<td>" +array[i].phone+ "</td>" +
+                            "<td>" +array[i].qq+ "</td>" +
+                            "<td>" +array[i].address+ "</td>" +
+                            "<td>" +array[i].postal+ "</td>" +
+                            "<td>" +array[i].country+ "</td>" +
+                            "<td>" +array[i].rpr+ "</td>" +
+                            "<td>" +array[i].birthday+ "</td>" +
+                            "<td>" +array[i].num+ "</td>" +
+                            "<td>" +array[i].national+ "</td><td>" +
+                            "<a href="+"'"+"HR"+"'"+"> 查询 </a>" +
+                            "<a href="+"'"+"HR"+"'"+"> 修改 </a>" +
+                            "<a href="+"'"+"HR"+"'"+"> 删除 </a>" +
+                            "</td></tr>")
+                    }
+                },
+                error:function () {
+                    alert("请求出现错误！请联系管理员")
+                }
+            })
+        }
+
+        $(function () {
+            findAll();
+        })
+    </script>
+</head>
+<body>
+
+    <div id="emp">
+        <div id="emps">
+            <table id="myTable" style="color: #FFB800">
+
+            </table>
+        </div>
+    </div>
+</body>
+</html>
